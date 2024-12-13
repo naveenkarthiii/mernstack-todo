@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Todo App</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"> -->
+	</head>
+
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.jsx"></script>
+		<script>
+			// Parallax effect on mouse move
+			document.addEventListener('mousemove', function (e) {
+				const moveX = e.clientX / window.innerWidth - 0.5;
+				const moveY = e.clientY / window.innerHeight - 0.5;
+
+				document.querySelector('.container').style.transform = `rotateX(${
+					moveY * 20
+				}deg) rotateY(${moveX * 20}deg)`;
+			});
+		</script>
+	</body>
+</html>

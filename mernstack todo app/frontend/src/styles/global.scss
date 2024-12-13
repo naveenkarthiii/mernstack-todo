@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+/* Variables for reuse */
+$primary-color: #00d4ff;
+$primary-color-hover: #00b5e0;
+$white: #fff;
+$dark-overlay: rgba(0, 0, 0, 0.5);
+$light-text: rgba(255, 255, 255, 0.85);
+$frosted-bg: rgba(255, 255, 255, 0.1);
+$shadow-color: rgba(0, 0, 0, 0.25);
+
+/* Reset default padding, margin, and box-sizing */
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.5%; /* 1rem = 10px for easier calculations */
+	font-family: 'Inter', sans-serif;
+	scroll-behavior: smooth;
+}
+
+body {
+	background-image: url(pixel.jpg);
+	background-position: center;
+	background-size: fill;
+	color: $white;
+	line-height: 1.6;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	position: relative;
+	overflow: hidden;
+
+	/* Dark overlay */
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: $dark-overlay;
+		z-index: -1;
+	}
+}
+
+/* Video background */
+.video-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	z-index: -2;
+	filter: brightness(0.5); /* Dim video for better contrast */
+}
+
+/* Main content container */
+.container {
+	max-width: 1200px;
+	padding: 3rem;
+	background: $frosted-bg;
+	backdrop-filter: blur(10px); /* Frosted glass effect */
+	border-radius: 15px;
+	box-shadow: 0 8px 16px $shadow-color;
+	text-align: center;
+	color: $white;
+	position: relative;
+	transform-style: preserve-3d;
+	perspective: 1000px;
+	transition: transform 0.5s ease;
+
+	h1 {
+		font-size: 3.5rem;
+		font-weight: 600;
+		margin-bottom: 2rem;
+		letter-spacing: 1.5px;
+		text-transform: uppercase;
+	}
+
+	p {
+		font-size: 1.8rem;
+		margin-bottom: 1.5rem;
+		font-weight: 400;
+		color: $light-text;
+	}
+}
+
+/* Link styles */
+a {
+	text-decoration: none;
+	color: $primary-color;
+	font-weight: 500;
+	transition: color 0.3s ease;
+
+	&:hover {
+		color: $primary-color-hover;
+	}
+}
+
+/* Button styling */
+button {
+	font-size: 1.6rem;
+	padding: 1rem 2rem;
+	background-color: $primary-color;
+	border: none;
+	border-radius: 5px;
+	color: $white;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background-color 0.3s ease, box-shadow 0.3s ease;
+	margin-top: 2rem;
+
+	&:hover {
+		background-color: $primary-color-hover;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+	}
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+	html {
+		font-size: 9px;
+	}
+	.container {
+		h1 {
+			font-size: 3rem;
+		}
+		p {
+			font-size: 1.6rem;
+		}
+		button {
+			font-size: 1.4rem;
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	html {
+		font-size: 8px;
+	}
+	.container {
+		h1 {
+			font-size: 2.5rem;
+		}
+		p {
+			font-size: 1.4rem;
+		}
+	}
+}
+
+/* Mouse movement parallax effect */
+.container {
+	&:hover {
+		transform: translateZ(0);
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 10px;
+			height: 10px;
+			background-color: $primary-color;
+			border-radius: 50%;
+			transition: all 0.5s ease;
+		}
+	}
+}
+
+body:hover {
+	transform: perspective(1000px);
+}
